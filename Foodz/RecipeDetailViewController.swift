@@ -50,7 +50,7 @@ class RecipeDetailViewController: UIViewController {
         
         if !editMode {
             let params = recipe?.toParameters()
-            Alamofire.request(RECIPE_URL, method: .post, parameters: params, headers: headers).responseJSON { response in
+            Alamofire.request(RECIPE_URL, method: .post, parameters: params, headers: nil).responseJSON { response in
                 self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: nil, action: nil)
                 switch response.result {
                 case .success(let value):
@@ -63,7 +63,7 @@ class RecipeDetailViewController: UIViewController {
             }
         } else {
             let params = recipe?.toParameters()
-            Alamofire.request("\(RECIPE_URL)\(recipe!.id!)/", method: .put, parameters: params, headers: headers).responseJSON { response in
+            Alamofire.request("\(RECIPE_URL)\(recipe!.id!)/", method: .put, parameters: params, headers: nil).responseJSON { response in
                 self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: nil, action: nil)
                 switch response.result {
                 case .success(let value):

@@ -16,11 +16,9 @@ public let PLAN_URL = "\(BASE_URL)plans/"
 public let LATEST_URL = "\(PLAN_URL)latest/"
 public let MEAL_URL = "\(BASE_URL)meals/"
 
-let user = "hakloev"
-let password = ""
-let credentialData = "\(user):\(password)".data(using: String.Encoding.utf8)!
-let base64Credentials = credentialData.base64EncodedString(options: [])
-let headers = ["Authorization": "Basic \(base64Credentials)"]
+//let credentialData = "\(user):\(password)".data(using: String.Encoding.utf8)!
+//let base64Credentials = credentialData.base64EncodedString(options: [])
+//let headers = ["Authorization": "Basic \(base64Credentials)"]
 
 struct Recipe {
     var id: Int?

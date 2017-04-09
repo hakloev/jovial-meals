@@ -10,6 +10,8 @@
 		074C5F171E965E4A00A3D372 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074C5F161E965E4A00A3D372 /* RecipeTableViewCell.swift */; };
 		0756CB331E97DB5300A532FF /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0756CB321E97DB5300A532FF /* DateUtil.swift */; };
 		0756CB351E99208E00A532FF /* MostRecentPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0756CB341E99208E00A532FF /* MostRecentPlanViewController.swift */; };
+		0756CB371E9A54B000A532FF /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0756CB361E9A54B000A532FF /* LoginService.swift */; };
+		0756CB391E9A578400A532FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0756CB381E9A578400A532FF /* LoginViewController.swift */; };
 		075AF34F1E96B4AC006DC8A8 /* PlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075AF34E1E96B4AC006DC8A8 /* PlanTableViewCell.swift */; };
 		075AF3511E97AA80006DC8A8 /* PlanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075AF3501E97AA80006DC8A8 /* PlanDetailViewController.swift */; };
 		075AF3531E97B1F3006DC8A8 /* RecipePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075AF3521E97B1F3006DC8A8 /* RecipePickerViewController.swift */; };
@@ -48,6 +50,8 @@
 		074C5F161E965E4A00A3D372 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		0756CB321E97DB5300A532FF /* DateUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		0756CB341E99208E00A532FF /* MostRecentPlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MostRecentPlanViewController.swift; sourceTree = "<group>"; };
+		0756CB361E9A54B000A532FF /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		0756CB381E9A578400A532FF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		075AF34E1E96B4AC006DC8A8 /* PlanTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanTableViewCell.swift; sourceTree = "<group>"; };
 		075AF3501E97AA80006DC8A8 /* PlanDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanDetailViewController.swift; sourceTree = "<group>"; };
 		075AF3521E97B1F3006DC8A8 /* RecipePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipePickerViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +148,8 @@
 				0756CB321E97DB5300A532FF /* DateUtil.swift */,
 				07A479621E96A943004E0B33 /* RecipeDetailViewController.swift */,
 				0756CB341E99208E00A532FF /* MostRecentPlanViewController.swift */,
+				0756CB361E9A54B000A532FF /* LoginService.swift */,
+				0756CB381E9A578400A532FF /* LoginViewController.swift */,
 			);
 			path = Foodz;
 			sourceTree = "<group>";
@@ -473,12 +479,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0756CB391E9A578400A532FF /* LoginViewController.swift in Sources */,
 				075AF3531E97B1F3006DC8A8 /* RecipePickerViewController.swift in Sources */,
 				07C6362B1E96587F00B55F5B /* SecondViewController.swift in Sources */,
 				07C636271E96587F00B55F5B /* AppDelegate.swift in Sources */,
 				07C636291E96587F00B55F5B /* FirstViewController.swift in Sources */,
 				07A479631E96A943004E0B33 /* RecipeDetailViewController.swift in Sources */,
 				0756CB351E99208E00A532FF /* MostRecentPlanViewController.swift in Sources */,
+				0756CB371E9A54B000A532FF /* LoginService.swift in Sources */,
 				075AF34F1E96B4AC006DC8A8 /* PlanTableViewCell.swift in Sources */,
 				0756CB331E97DB5300A532FF /* DateUtil.swift in Sources */,
 				075AF3511E97AA80006DC8A8 /* PlanDetailViewController.swift in Sources */,

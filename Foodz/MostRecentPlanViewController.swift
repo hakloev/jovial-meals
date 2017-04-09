@@ -38,7 +38,7 @@ class MostRecentPlanViewController: UIViewController {
     }
     
     func loadMostRecentPlan() {
-        Alamofire.request(LATEST_URL).responseJSON { response in
+        Alamofire.request(LATEST_URL, headers: ["Authorization": "JWT \(UserDefaults.standard.string(forKey: LoginConstants.JWT_TOKEN_KEY)!)"]).responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
