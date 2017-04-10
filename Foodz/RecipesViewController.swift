@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  RecipesViewController.swift
 //  Foodz
 //
 //  Created by Håkon Ødegård Løvdal on 06/04/2017.
@@ -9,39 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-//let credentialData = "\(user):\(password)".data(using: String.Encoding.utf8)!
-//let base64Credentials = credentialData.base64EncodedString(options: [])
-//let headers = ["Authorization": "Basic \(base64Credentials)"]
-
-struct Recipe {
-    var id: Int?
-    var name: String
-    var website: String?
-    let recipeType: String
-    
-    init(json: JSON) {
-        id = json["id"].int
-        name = json["name"].string!
-        website = json["website"].string
-        recipeType = json["recipe_type"].string!
-    }
-    
-    init(name: String, website: String = "", recipeType: String = "F") {
-        self.name = name
-        self.website = website
-        self.recipeType = recipeType
-    }
-    
-    func toParameters() -> [String:String] {
-        return [
-            "name": name,
-            "website": website ?? "",
-            "recipe_type": recipeType
-        ]
-    }
-}
-
-class FirstViewController: UIViewController {
+class RecipesViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -116,7 +84,7 @@ class FirstViewController: UIViewController {
     }
 }
 
-extension FirstViewController: UITableViewDelegate, UITableViewDataSource {
+extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

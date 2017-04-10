@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  PlansViewController.swift
 //  Foodz
 //
 //  Created by Håkon Ødegård Løvdal on 06/04/2017.
@@ -10,47 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-struct Meal {
-    var id: Int?
-    let day: Int
-    let eaten: Bool
-    var recipe: Recipe?
-    
-    init(json: JSON) {
-        id = json["id"].int
-        day = json["day"].int!
-        eaten = json["eaten"].bool!
-        if json["recipe"] != JSON.null {
-            recipe = Recipe(json: json["recipe"])
-        } else {
-            recipe = nil
-        }
-    }
-}
-
-struct Plan {
-    var id: Int?
-    let startDate: String
-    let endDate: String
-    var meals: [Meal]?
-    
-    init(json: JSON) {
-        id = json["id"].int
-        startDate = json["start_date"].string!
-        endDate = json["end_date"].string!
-        meals = []
-        
-        if json["meals"].exists() {
-            for meal in json["meals"].array! {
-                let tempMeal = Meal(json: meal)
-                meals!.append(tempMeal)
-            }
-        }
-        
-    }
-}
-
-class SecondViewController: UIViewController {
+class PlansViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -105,7 +65,7 @@ class SecondViewController: UIViewController {
     
 }
 
-extension SecondViewController: UITableViewDelegate, UITableViewDataSource {
+extension PlansViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

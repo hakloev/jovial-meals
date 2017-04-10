@@ -16,10 +16,14 @@
 		075AF3511E97AA80006DC8A8 /* PlanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075AF3501E97AA80006DC8A8 /* PlanDetailViewController.swift */; };
 		075AF3531E97B1F3006DC8A8 /* RecipePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075AF3521E97B1F3006DC8A8 /* RecipePickerViewController.swift */; };
 		075C07CC1E9ABE3800B8DF72 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075C07CB1E9ABE3800B8DF72 /* ApiService.swift */; };
+		075C07CE1E9BEB1200B8DF72 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075C07CD1E9BEB1100B8DF72 /* Meal.swift */; };
+		075C07D01E9BEB5C00B8DF72 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075C07CF1E9BEB5B00B8DF72 /* Plan.swift */; };
+		075C07D21E9BEB8A00B8DF72 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075C07D11E9BEB8A00B8DF72 /* Recipe.swift */; };
+		075C07D51E9BEC2000B8DF72 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075C07D41E9BEC2000B8DF72 /* Day.swift */; };
 		07A479631E96A943004E0B33 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A479621E96A943004E0B33 /* RecipeDetailViewController.swift */; };
 		07C636271E96587F00B55F5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C636261E96587F00B55F5B /* AppDelegate.swift */; };
-		07C636291E96587F00B55F5B /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C636281E96587F00B55F5B /* FirstViewController.swift */; };
-		07C6362B1E96587F00B55F5B /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C6362A1E96587F00B55F5B /* SecondViewController.swift */; };
+		07C636291E96587F00B55F5B /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C636281E96587F00B55F5B /* RecipesViewController.swift */; };
+		07C6362B1E96587F00B55F5B /* PlansViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C6362A1E96587F00B55F5B /* PlansViewController.swift */; };
 		07C6362E1E96587F00B55F5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07C6362C1E96587F00B55F5B /* Main.storyboard */; };
 		07C636301E96587F00B55F5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07C6362F1E96587F00B55F5B /* Assets.xcassets */; };
 		07C636331E96587F00B55F5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07C636311E96587F00B55F5B /* LaunchScreen.storyboard */; };
@@ -57,11 +61,15 @@
 		075AF3501E97AA80006DC8A8 /* PlanDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanDetailViewController.swift; sourceTree = "<group>"; };
 		075AF3521E97B1F3006DC8A8 /* RecipePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipePickerViewController.swift; sourceTree = "<group>"; };
 		075C07CB1E9ABE3800B8DF72 /* ApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		075C07CD1E9BEB1100B8DF72 /* Meal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		075C07CF1E9BEB5B00B8DF72 /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
+		075C07D11E9BEB8A00B8DF72 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		075C07D41E9BEC2000B8DF72 /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		07A479621E96A943004E0B33 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		07C636231E96587F00B55F5B /* Foodz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Foodz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07C636261E96587F00B55F5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		07C636281E96587F00B55F5B /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		07C6362A1E96587F00B55F5B /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		07C636281E96587F00B55F5B /* RecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
+		07C6362A1E96587F00B55F5B /* PlansViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlansViewController.swift; sourceTree = "<group>"; };
 		07C6362D1E96587F00B55F5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		07C6362F1E96587F00B55F5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07C636321E96587F00B55F5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -111,6 +119,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		075C07D31E9BEBD900B8DF72 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				075C07D11E9BEB8A00B8DF72 /* Recipe.swift */,
+				075C07CD1E9BEB1100B8DF72 /* Meal.swift */,
+				075C07CF1E9BEB5B00B8DF72 /* Plan.swift */,
+				075C07D41E9BEC2000B8DF72 /* Day.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		07C6361A1E96587F00B55F5B = {
 			isa = PBXGroup;
 			children = (
@@ -137,8 +156,9 @@
 			isa = PBXGroup;
 			children = (
 				07C636261E96587F00B55F5B /* AppDelegate.swift */,
-				07C636281E96587F00B55F5B /* FirstViewController.swift */,
-				07C6362A1E96587F00B55F5B /* SecondViewController.swift */,
+				07C636281E96587F00B55F5B /* RecipesViewController.swift */,
+				075C07D31E9BEBD900B8DF72 /* Models */,
+				07C6362A1E96587F00B55F5B /* PlansViewController.swift */,
 				07C6362C1E96587F00B55F5B /* Main.storyboard */,
 				075AF3521E97B1F3006DC8A8 /* RecipePickerViewController.swift */,
 				075AF3501E97AA80006DC8A8 /* PlanDetailViewController.swift */,
@@ -484,17 +504,21 @@
 			files = (
 				0756CB391E9A578400A532FF /* LoginViewController.swift in Sources */,
 				075AF3531E97B1F3006DC8A8 /* RecipePickerViewController.swift in Sources */,
-				07C6362B1E96587F00B55F5B /* SecondViewController.swift in Sources */,
+				075C07CE1E9BEB1200B8DF72 /* Meal.swift in Sources */,
+				07C6362B1E96587F00B55F5B /* PlansViewController.swift in Sources */,
 				07C636271E96587F00B55F5B /* AppDelegate.swift in Sources */,
-				07C636291E96587F00B55F5B /* FirstViewController.swift in Sources */,
+				07C636291E96587F00B55F5B /* RecipesViewController.swift in Sources */,
 				07A479631E96A943004E0B33 /* RecipeDetailViewController.swift in Sources */,
 				0756CB351E99208E00A532FF /* MostRecentPlanViewController.swift in Sources */,
 				075C07CC1E9ABE3800B8DF72 /* ApiService.swift in Sources */,
 				0756CB371E9A54B000A532FF /* LoginService.swift in Sources */,
 				075AF34F1E96B4AC006DC8A8 /* PlanTableViewCell.swift in Sources */,
+				075C07D51E9BEC2000B8DF72 /* Day.swift in Sources */,
 				0756CB331E97DB5300A532FF /* DateUtil.swift in Sources */,
 				075AF3511E97AA80006DC8A8 /* PlanDetailViewController.swift in Sources */,
 				074C5F171E965E4A00A3D372 /* RecipeTableViewCell.swift in Sources */,
+				075C07D01E9BEB5C00B8DF72 /* Plan.swift in Sources */,
+				075C07D21E9BEB8A00B8DF72 /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
