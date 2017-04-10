@@ -8,7 +8,6 @@
 
 import UIKit
 import SwiftyJSON
-import Alamofire
 
 public enum Day: Int {
     case monday = 0
@@ -48,16 +47,12 @@ class PlanDetailViewController: UITableViewController {
         if var tempPlan = self.plan {
             if tempPlan.meals!.count == 0 {
                 print("Load Meals for plan")
-                Alamofire.request("\(MEAL_URL)\(tempPlan.id!)").responseJSON { response in
-                    switch response.result {
-                    case .success(let value):
-                        let json = JSON(value)
-                        let newMeals: [Meal] = json.array!.map({ Meal(json: $0) })
-                        tempPlan.meals = newMeals
-                        self.plan = tempPlan
-                    case .failure(let error):
-                        print("Error: \(error.localizedDescription)")
-                    }
+                
+                ApiService.sharedInstance.getMealsForPlanById(id: tempPlan.id!) { (json, error) in
+                    // TODO: Add error check
+                    let newMeals: [Meal] = json!.array!.map({ Meal(json: $0) })
+                    tempPlan.meals = newMeals
+                    self.plan = tempPlan
                 }
             }
         }

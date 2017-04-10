@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 import SwiftyJSON
 
 class MostRecentPlanViewController: UIViewController {
@@ -38,16 +37,19 @@ class MostRecentPlanViewController: UIViewController {
     }
     
     func loadMostRecentPlan() {
-        Alamofire.request(LATEST_URL, headers: ["Authorization": "JWT \(UserDefaults.standard.string(forKey: LoginConstants.JWT_TOKEN_KEY)!)"]).responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                let plan = Plan(json: json)
-                print(plan)
-                self.plan = plan
-            case .failure(let error):
-                print("Error: \(error.localizedDescription)")
+        ApiService.sharedInstance.getMostRecentPlan { (json, error) in
+            guard let _ = json else {
+                if let err = error {
+                    print("Error while fetching most recent plan: \(err.localizedDescription)")
+                } else {
+                    print("Error while fetching most recent plan")
+                }
+                return
             }
+            
+            let plan = Plan(json: json!)
+            self.plan = plan
+            
         }
     }
 }

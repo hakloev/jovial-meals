@@ -7,14 +7,7 @@
 //
 
 import UIKit
-import Alamofire
 import SwiftyJSON
-
-let BASE_URL = "http://10.0.1.44:8000/api/v1/food/"
-public let RECIPE_URL = "\(BASE_URL)recipes/"
-public let PLAN_URL = "\(BASE_URL)plans/"
-public let LATEST_URL = "\(PLAN_URL)latest/"
-public let MEAL_URL = "\(BASE_URL)meals/"
 
 //let credentialData = "\(user):\(password)".data(using: String.Encoding.utf8)!
 //let base64Credentials = credentialData.base64EncodedString(options: [])
@@ -64,23 +57,17 @@ class FirstViewController: UIViewController {
         self.tableView.estimatedRowHeight = 50
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
-        Alamofire.request(RECIPE_URL).responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                print("Load success")
-                let json = JSON(value)
-                for (_, item):(String, JSON) in json {
-                    self.recipes.append(Recipe(json: item))
-                }
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            case .failure(let error):
-                print("Error: \(error.localizedDescription)")
+        ApiService.sharedInstance.getAllRecipes { (json, error) in
+            
+            for (_, item):(String, JSON) in json! {
+                self.recipes.append(Recipe(json: item))
             }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+
         }
-        
     }
 
     override func didReceiveMemoryWarning() {

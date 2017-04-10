@@ -65,20 +65,15 @@ class SecondViewController: UIViewController {
         self.tableView.estimatedRowHeight = 50
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
-        Alamofire.request(PLAN_URL).responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                
-                for (_, item):(String, JSON) in json {
-                    self.plans.append(Plan(json: item))
-                }
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            case .failure(let error):
-                print("Error: \(error.localizedDescription)")
+        ApiService.sharedInstance.getAllPlans { (json, error) in
+            // TODO: Add error handling here
+            
+            for (_, item):(String, JSON) in json! {
+                self.plans.append(Plan(json: item))
+            }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
     }

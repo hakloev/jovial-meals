@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 import SwiftyJSON
 
 class RecipePickerViewController: UITableViewController {
@@ -17,23 +16,16 @@ class RecipePickerViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Alamofire.request(RECIPE_URL).responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                
-                for (_, item):(String, JSON) in json {
-                    self.recipes.append(Recipe(json: item))
-                }
-                
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            case .failure(let error):
-                print("Error: \(error.localizedDescription)")
+        
+        ApiService.sharedInstance.getAllRecipes { (json, error) in
+            for (_, item):(String, JSON) in json! {
+                self.recipes.append(Recipe(json: item))
+            }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
-
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

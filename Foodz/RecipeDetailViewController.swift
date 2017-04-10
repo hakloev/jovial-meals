@@ -47,32 +47,23 @@ class RecipeDetailViewController: UIViewController {
         } else {
             recipe?.name = self.name.text!
         }
-        
+                
         if !editMode {
             let params = recipe?.toParameters()
-            Alamofire.request(RECIPE_URL, method: .post, parameters: params, headers: nil).responseJSON { response in
+            ApiService.sharedInstance.addRecipe(parameters: params!) { (json, error) in
                 self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: nil, action: nil)
-                switch response.result {
-                case .success(let value):
-                    let newRecipe = Recipe(json: JSON(value))
-                    self.recipe = newRecipe
-                    self.performSegue(withIdentifier: "SaveRecipeDetail", sender: self)
-                case .failure(let error):
-                    print("Error \(error.localizedDescription)")
-                }
+                let newRecipe = Recipe(json: json!)
+                self.recipe = newRecipe
+                self.performSegue(withIdentifier: "SaveRecipeDetail", sender: self)
             }
+            
         } else {
             let params = recipe?.toParameters()
-            Alamofire.request("\(RECIPE_URL)\(recipe!.id!)/", method: .put, parameters: params, headers: nil).responseJSON { response in
+            ApiService.sharedInstance.editRecipe(withId: recipe!.id!, andParameters: params!) { (json, error) in
                 self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: nil, action: nil)
-                switch response.result {
-                case .success(let value):
-                    let updatedRecipe = Recipe(json: JSON(value))
-                    self.recipe = updatedRecipe
-                    self.performSegue(withIdentifier: "SaveRecipeDetail", sender: self)
-                case .failure(let error):
-                    print("Error \(error.localizedDescription)")
-                }
+                let updatedRecipe = Recipe(json: json!)
+                self.recipe = updatedRecipe
+                self.performSegue(withIdentifier: "SaveRecipeDetail", sender: self)
             }
         }
     }
