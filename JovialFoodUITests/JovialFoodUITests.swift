@@ -1,6 +1,6 @@
 //
-//  FoodzUITests.swift
-//  FoodzUITests
+//  JovialFoodUITests.swift
+//  JovialFoodUITests
 //
 //  Created by Håkon Ødegård Løvdal on 06/04/2017.
 //  Copyright © 2017 Håkon Ødegård Løvdal. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 
-class FoodzUITests: XCTestCase {
+class JovialFoodUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()

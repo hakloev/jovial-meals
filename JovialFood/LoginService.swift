@@ -49,7 +49,7 @@ class LoginService {
                     // Delegate Error
                     print("Error in jwtKey parse")
                     self.delegate?.loginDidFail()
-                }                
+                }
             case .failure(let error):
                 print("Error: \(error.localizedDescription)")
                 // Delegate error

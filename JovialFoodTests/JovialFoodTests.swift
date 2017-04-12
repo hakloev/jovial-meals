@@ -1,6 +1,6 @@
 //
-//  FoodzTests.swift
-//  FoodzTests
+//  JovialFoodTests.swift
+//  JovialFoodTests
 //
 //  Created by Håkon Ødegård Løvdal on 06/04/2017.
 //  Copyright © 2017 Håkon Ødegård Løvdal. All rights reserved.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import Foodz
 
-class FoodzTests: XCTestCase {
+class JovialFoodTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
