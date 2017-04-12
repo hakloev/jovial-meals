@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 
 class MostRecentPlanViewController: UIViewController {
     
@@ -37,18 +36,12 @@ class MostRecentPlanViewController: UIViewController {
     }
     
     func loadMostRecentPlan() {
-        ApiService.sharedInstance.getMostRecentPlan { (json, error) in
-            guard let _ = json else {
-                if let err = error {
-                    print("Error while fetching most recent plan: \(err.localizedDescription)")
-                } else {
-                    print("Error while fetching most recent plan")
-                }
-                return
+        ApiService.sharedInstance.getMostRecentPlan { (plan, error) in
+            if let fetchedPlan = plan {
+                self.plan = fetchedPlan
+            } else {
+                print("[MostRecentPlanViewController] Error while unwrapping response from ApiService")
             }
-            
-            let plan = Plan(json: json!)
-            self.plan = plan
             
         }
     }

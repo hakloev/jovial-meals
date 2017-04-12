@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 
 class PlansViewController: UIViewController {
 
@@ -25,15 +23,16 @@ class PlansViewController: UIViewController {
         self.tableView.estimatedRowHeight = 50
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
-        ApiService.sharedInstance.getAllPlans { (json, error) in
+        ApiService.sharedInstance.getAllPlans { (plans, error) in
             // TODO: Add error handling here
-            
-            for (_, item):(String, JSON) in json! {
-                self.plans.append(Plan(json: item))
-            }
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+            if let fetchedPlans = plans {
+                self.plans = fetchedPlans
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } else {
+                print("[PlansViewController] Error while unwrapping plans from ApiService")
             }
         }
     }
@@ -48,6 +47,7 @@ class PlansViewController: UIViewController {
             if let rootVC = segue.destination as? UINavigationController {
                 if let vc = rootVC.viewControllers[0] as? PlanDetailViewController {
                     let plan = self.plans[self.tableView.indexPathForSelectedRow!.row]
+                    vc.editMode = true
                     vc.plan = plan
                 }
             }
@@ -58,6 +58,7 @@ class PlansViewController: UIViewController {
         print("Cancel PlanDetail")
         if let selectedIndex = self.tableView.indexPathForSelectedRow {
             if let vc = segue.source as? PlanDetailViewController {
+                // TODO: May remove this, and only do it on succeded save
                 self.plans[selectedIndex.row] = vc.plan!
             }
         }
@@ -81,8 +82,8 @@ extension PlansViewController: UITableViewDelegate, UITableViewDataSource {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd" // 2017-12-31
-        let startDate = dateFormatter.date(from: (plan.startDate))
-        let endDate = dateFormatter.date(from: (plan.endDate))
+        let startDate = dateFormatter.date(from: (plan.startDate!))
+        let endDate = dateFormatter.date(from: (plan.endDate!))
         
         dateFormatter.dateFormat = "d MMM" // 7 May
         let startDateString = dateFormatter.string(from: startDate!)

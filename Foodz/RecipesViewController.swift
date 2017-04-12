@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 
 class RecipesViewController: UIViewController {
     
@@ -25,16 +24,16 @@ class RecipesViewController: UIViewController {
         self.tableView.estimatedRowHeight = 50
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
-        ApiService.sharedInstance.getAllRecipes { (json, error) in
-            
-            for (_, item):(String, JSON) in json! {
-                self.recipes.append(Recipe(json: item))
+        ApiService.sharedInstance.getAllRecipes { (recipes, error) in
+            if let fetchedRecipes = recipes {
+                self.recipes = fetchedRecipes
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } else {
+                print("[RecipesViewController] Something wrong while unwrapping recipes from ApiService")
             }
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-
         }
     }
 

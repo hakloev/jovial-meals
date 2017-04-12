@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 
 class RecipePickerViewController: UITableViewController {
 
@@ -17,13 +16,15 @@ class RecipePickerViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ApiService.sharedInstance.getAllRecipes { (json, error) in
-            for (_, item):(String, JSON) in json! {
-                self.recipes.append(Recipe(json: item))
-            }
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+        ApiService.sharedInstance.getAllRecipes { (recipes, error) in
+            if let fetchedRecipes = recipes {
+                self.recipes = fetchedRecipes
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } else {
+                print("[RecipePickerViewController] Something wrong while unwrapping recipes from ApiService")
             }
         }
         

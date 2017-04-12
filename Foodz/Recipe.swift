@@ -6,20 +6,22 @@
 //  Copyright © 2017 Håkon Ødegård Løvdal. All rights reserved.
 //
 
-import SwiftyJSON
+import ObjectMapper
 
-struct Recipe {
+struct Recipe: Mappable {
     var id: Int?
-    var name: String
+    var name: String?
     var website: String?
-    let recipeType: String
+    var recipeType: String?
     
-    init(json: JSON) {
-        id = json["id"].int
-        name = json["name"].string!
-        website = json["website"].string
-        recipeType = json["recipe_type"].string!
-    }
+//    init(json: SwiftyJSON.JSON) {
+//        id = json["id"].int
+//        name = json["name"].string
+//        website = json["website"].string
+//        recipeType = json["recipe_type"].string
+//    }
+    
+    init?(map: Map) {}
     
     init(name: String, website: String = "", recipeType: String = "F") {
         self.name = name
@@ -27,11 +29,10 @@ struct Recipe {
         self.recipeType = recipeType
     }
     
-    func toParameters() -> [String:String] {
-        return [
-            "name": name,
-            "website": website ?? "",
-            "recipe_type": recipeType
-        ]
+    mutating func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        website <- map["website"]
+        recipeType <- map["recipe_type"]
     }
 }

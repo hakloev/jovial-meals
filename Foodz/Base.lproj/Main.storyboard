@@ -192,8 +192,8 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TWW-cp-4PN">
                                             <rect key="frame" x="296" y="12" width="44" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -215,7 +215,11 @@
                                 <segue destination="GNg-Dd-CTJ" kind="unwind" unwindAction="cancelToPlansViewControllerWithSegue:" id="5IO-fm-u7a"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="CO0-jw-vIi"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="CO0-jw-vIi">
+                            <connections>
+                                <action selector="savePlan:" destination="ymA-Vz-yl9" id="fNJ-e1-36c"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xnK-2f-pNQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -543,7 +547,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="0mD-kq-2Lj"/>
         <segue reference="eWz-u6-3ZW"/>
+        <segue reference="0mD-kq-2Lj"/>
     </inferredMetricsTieBreakers>
 </document>

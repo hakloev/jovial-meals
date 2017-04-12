@@ -8,7 +8,7 @@
 
 import Foundation
 import Alamofire
-import SwiftyJSON
+import AlamofireObjectMapper
 
 protocol LoginServiceDelegate: class {
     func loginDidSucceded(token: String)
@@ -24,7 +24,7 @@ class LoginService {
     
     public static let sharedInstance = LoginService()
     
-    private let BASE_URL = "http://10.0.1.44:8000/api/v1/token-auth/"
+    private let BASE_URL = "http://10.0.0.62:8000/api/v1/token-auth/"
     
     weak var delegate: LoginServiceDelegate?
     
@@ -34,25 +34,22 @@ class LoginService {
             "password": password,
         ]
         
-        Alamofire.request(BASE_URL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { response in
+        Alamofire.request(BASE_URL, method: .post, parameters: parameters, headers: nil).responseObject { (response: DataResponse<LoginResponse>) in
             switch response.result {
-            case .success(let value):
-                print(value)
-                let data = JSON(value)
-                
-                if let jwtKey = data["token"].string {
+            case .success(let response):
+                if let jwtKey = response.token {
                     print(jwtKey)
                     UserDefaults.standard.set(true, forKey: LoginConstants.USER_LOGGED_IN_KEY)
                     UserDefaults.standard.set(jwtKey, forKey: LoginConstants.JWT_TOKEN_KEY)
                     UserDefaults.standard.synchronize()
-
+                    
                     // Delegate Success here
                     self.delegate?.loginDidSucceded(token: jwtKey)
                 } else {
                     // Delegate Error
                     print("Error in jwtKey parse")
                     self.delegate?.loginDidFail()
-                }
+                }                
             case .failure(let error):
                 print("Error: \(error.localizedDescription)")
                 // Delegate error

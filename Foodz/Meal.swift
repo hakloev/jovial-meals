@@ -6,22 +6,38 @@
 //  Copyright © 2017 Håkon Ødegård Løvdal. All rights reserved.
 //
 
-import SwiftyJSON
+import ObjectMapper
 
-struct Meal {
+struct Meal: Mappable {
     var id: Int?
-    let day: Int
-    let eaten: Bool
+    var day: Int?
+    var eaten: Bool?
     var recipe: Recipe?
     
-    init(json: JSON) {
-        id = json["id"].int
-        day = json["day"].int!
-        eaten = json["eaten"].bool!
-        if json["recipe"] != JSON.null {
-            recipe = Recipe(json: json["recipe"])
-        } else {
-            recipe = nil
-        }
+//    init(json: JSON) {
+//        id = json["id"].int
+//        day = json["day"].int!
+//        eaten = json["eaten"].bool!
+//        if json["recipe"] != JSON.null {
+//            //recipe = Recipe(json: json["recipe"])
+//        } else {
+//            recipe = nil
+//        }
+//    }
+    
+    init?(map: Map) {}
+    
+    init(day: Int) {
+        id = nil
+        self.day = day
+        eaten = false
+        recipe = nil        
+    }
+    
+    mutating func mapping(map: Map) {
+        id <- map["id"]
+        day <- map["day"]
+        eaten <- map["eaten"]
+        recipe <- map["recipe"]
     }
 }

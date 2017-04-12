@@ -6,8 +6,8 @@ target 'Foodz' do
   use_frameworks!
 
   # Pods for Foodz
-  pod 'Alamofire'
-  pod 'SwiftyJSON'
+  pod 'Alamofire', '~> 4.4.0'
+  pod 'AlamofireObjectMapper', '~> 4.1.0'
 
   target 'FoodzTests' do
     inherit! :search_paths

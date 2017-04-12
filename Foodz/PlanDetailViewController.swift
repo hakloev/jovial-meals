@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftyJSON
 
 class PlanDetailViewController: UITableViewController {
     
@@ -19,31 +18,38 @@ class PlanDetailViewController: UITableViewController {
         }
     }
     
+    var editMode: Bool = false
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("PlanDetail willAppear")
-        if var tempPlan = self.plan {
-            if tempPlan.meals!.count == 0 {
-                print("Load Meals for plan")
-                
-                ApiService.sharedInstance.getMealsForPlanById(id: tempPlan.id!) { (json, error) in
-                    // TODO: Add error check
-                    let newMeals: [Meal] = json!.array!.map({ Meal(json: $0) })
-                    tempPlan.meals = newMeals
-                    self.plan = tempPlan
-                }
+        if editMode {
+            if let tempPlan = self.plan {
+                print("meals for plan \(tempPlan.startDate!)")
             }
+
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let date = dateFormatter.date(from: (plan?.startDate)!)
+        if editMode {
+            if let startDate = plan?.startDate {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                let date = dateFormatter.date(from: startDate)
+                self.navigationItem.title = "Week \(date!.getWeekNumber())"
+            } else {
+                self.navigationItem.title = "Week X"
+            }
+            self.navigationItem.rightBarButtonItem?.title = "Save"
+        } else {
+            print("add new plan, editMode false")
+            self.navigationItem.title = "New Plan"
+            plan = Plan()
+        }
 
-        self.navigationItem.title = "Week \(date!.getWeekNumber())"
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -59,7 +65,7 @@ class PlanDetailViewController: UITableViewController {
     @IBAction func unwindWithSelectedRecipe(segue: UIStoryboardSegue) {
         if let index = self.tableView.indexPathForSelectedRow {
             if let vc = segue.source as? RecipePickerViewController {
-                print("Picked Recipe \(vc.selectedRecipe!.name)")
+                print("Picked Recipe \(vc.selectedRecipe!.name!)")
                 self.plan!.meals?[index.row].recipe = vc.selectedRecipe
                 
                 DispatchQueue.main.async {
@@ -68,6 +74,18 @@ class PlanDetailViewController: UITableViewController {
             }
         }
     }
+    
+    @IBAction func savePlan(_ sender: Any) {
+        if editMode {
+            print("save edited plan")
+            
+            
+            
+        } else {
+            print("save new plan")
+        }
+    }
+    
 
     // MARK: - Table view data source
 
@@ -82,7 +100,7 @@ class PlanDetailViewController: UITableViewController {
         case 0:
             return 1
         case 1:
-            return (plan?.meals?.count)!
+            return plan?.meals?.count ?? 7
         default:
             return 0
         }
@@ -104,7 +122,7 @@ class PlanDetailViewController: UITableViewController {
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "mealCell", for: indexPath)
             let meal = plan!.meals?[indexPath.row]
-            cell.textLabel?.text = Day(rawValue: meal!.day)!.stringLabel
+            cell.textLabel?.text = Day(rawValue: meal!.day!)!.stringLabel
             if let recipe = meal?.recipe {
                 cell.detailTextLabel?.text = recipe.name
             } else {

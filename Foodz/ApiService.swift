@@ -8,15 +8,14 @@
 
 import Foundation
 import Alamofire
-import SwiftyJSON
+import AlamofireObjectMapper
 
-let BASE_URL = "http://10.0.1.44:8000/api/v1/food/"
+let BASE_URL = "http://10.0.0.62:8000/api/v1/food/"
 public let RECIPE_URL = "\(BASE_URL)recipes/"
 public let PLAN_URL = "\(BASE_URL)plans/"
 public let LATEST_URL = "\(PLAN_URL)latest/"
 public let MEAL_URL = "\(BASE_URL)meals/"
 
-typealias GeneralApiResponse = (JSON?, Error?) -> Void
 
 class ApiService {
     
@@ -36,14 +35,13 @@ class ApiService {
         return ["Authorization": "JWT \(jwtToken)"]
     }
     
-    func getMostRecentPlan(completion: @escaping GeneralApiResponse) {
+    func getMostRecentPlan(completion: @escaping (Plan?, Error?) -> Void) {
         // TODO: Need error handling for getTokenHeaders()
 
-        Alamofire.request(LATEST_URL, headers: getTokenHeaders()).responseJSON { response in
+        Alamofire.request(LATEST_URL, headers: getTokenHeaders()).responseObject { (response: DataResponse<Plan>) in
             switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                completion(json, nil)
+            case .success(let plan):
+                completion(plan, nil)
             case .failure(let error):
                 print("Error: \(error.localizedDescription)")
                 completion(nil, error)
@@ -51,13 +49,13 @@ class ApiService {
         }
     }
     
-    func getAllPlans(completion: @escaping GeneralApiResponse) {
-       
-        Alamofire.request(PLAN_URL, headers: getTokenHeaders()).responseJSON { response in
+    func getAllPlans(completion: @escaping ([Plan]?, Error?) -> Void) {
+        Alamofire.request(PLAN_URL, headers: getTokenHeaders()).responseObject { (response: DataResponse<PlanListResponse>) in
             switch response.result {
             case .success(let value):
-                let json = JSON(value)
-                completion(json, nil)
+                if let plans = value.results {
+                    completion(plans, nil)
+                }
             case .failure(let error):
                 print("Error: \(error.localizedDescription)")
                 completion(nil, error)
@@ -65,13 +63,27 @@ class ApiService {
         }
     }
     
-    func getMealsForPlanById(id: Int, completion: @escaping GeneralApiResponse) {
-        Alamofire.request("\(MEAL_URL)\(id)/", headers: getTokenHeaders()).responseJSON { response in
+//    func getMealsForPlanById(id: Int, completion: @escaping GeneralApiResponse) {
+//        Alamofire.request("\(MEAL_URL)\(id)/", headers: getTokenHeaders()).responseJSON { response in
+//            switch response.result {
+//            case .success(let value):
+//                let json = JSON(value)
+//                print(value)
+//                completion(json, nil)
+//            case .failure(let error):
+//                print("Error: \(error.localizedDescription)")
+//                completion(nil, error)
+//            }
+//        }
+//    }
+    
+    func getAllRecipes(completion: @escaping ([Recipe]?, Error?) -> Void) {
+        Alamofire.request(RECIPE_URL, headers: getTokenHeaders()).responseObject { (response: DataResponse<RecipeListResponse>) in
             switch response.result {
             case .success(let value):
-                let json = JSON(value)
-                print(value)
-                completion(json, nil)
+                if let recipes = value.results {
+                    completion(recipes, nil)
+                }
             case .failure(let error):
                 print("Error: \(error.localizedDescription)")
                 completion(nil, error)
@@ -79,26 +91,11 @@ class ApiService {
         }
     }
     
-    func getAllRecipes(completion: @escaping GeneralApiResponse) {
-        Alamofire.request(RECIPE_URL, headers: getTokenHeaders()).responseJSON { response in
+    func addRecipe(parameters: [String:Any], completion: @escaping (Recipe?, Error?) -> Void) {
+        Alamofire.request(RECIPE_URL, method: .post, parameters: parameters, headers: getTokenHeaders()).responseObject { (response: DataResponse<Recipe>) in
             switch response.result {
-            case .success(let value):
-                print(value)
-                let json = JSON(value)
-                completion(json, nil)
-            case .failure(let error):
-                print("Error: \(error.localizedDescription)")
-                completion(nil, error)
-            }
-        }
-    }
-    
-    func addRecipe(parameters: [String:String], completion: @escaping GeneralApiResponse) {
-        Alamofire.request(RECIPE_URL, method: .post, parameters: parameters, headers: getTokenHeaders()).responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                completion(json, nil)
+            case .success(let recipe):
+                completion(recipe, nil)
             case .failure(let error):
                 print("Error \(error.localizedDescription)")
                 completion(nil, error)
@@ -106,12 +103,11 @@ class ApiService {
         }
     }
     
-    func editRecipe(withId id: Int, andParameters parameters: [String:String], completion: @escaping GeneralApiResponse) {
-        Alamofire.request("\(RECIPE_URL)\(id)/", method: .put, parameters: parameters, headers: getTokenHeaders()).responseJSON { response in
+    func editRecipe(withId id: Int, andParameters parameters: [String:Any], completion: @escaping (Recipe?, Error?) -> Void) {
+        Alamofire.request("\(RECIPE_URL)\(id)/", method: .put, parameters: parameters, headers: getTokenHeaders()).responseObject { (response: DataResponse<Recipe>) in
             switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                completion(json, nil)
+            case .success(let recipe):
+                completion(recipe, nil)
             case .failure(let error):
                 print("Error \(error.localizedDescription)")
                 completion(nil, error)

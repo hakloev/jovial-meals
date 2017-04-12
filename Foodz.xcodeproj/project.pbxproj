@@ -29,6 +29,9 @@
 		07C636331E96587F00B55F5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07C636311E96587F00B55F5B /* LaunchScreen.storyboard */; };
 		07C6363E1E96587F00B55F5B /* FoodzTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C6363D1E96587F00B55F5B /* FoodzTests.swift */; };
 		07C636491E96587F00B55F5B /* FoodzUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C636481E96587F00B55F5B /* FoodzUITests.swift */; };
+		07FBF05D1E9E37DC0075BF95 /* RecipeListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FBF05C1E9E37DC0075BF95 /* RecipeListResponse.swift */; };
+		07FBF0611E9E3E930075BF95 /* PlanListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FBF0601E9E3E930075BF95 /* PlanListResponse.swift */; };
+		07FBF0631E9E42DD0075BF95 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FBF0621E9E42DD0075BF95 /* LoginResponse.swift */; };
 		1EB4BA9E1E249380EB2D0AAB /* Pods_FoodzTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98E480936BD0E2624DF56768 /* Pods_FoodzTests.framework */; };
 		9B28F92AEEBC0CFBADC4B635 /* Pods_FoodzUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9824F0711F0ED8342319B850 /* Pods_FoodzUITests.framework */; };
 		E4DE6554FB76E482830879B1 /* Pods_Foodz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D0A25782BA86D0A993BE6B7 /* Pods_Foodz.framework */; };
@@ -80,6 +83,9 @@
 		07C636441E96587F00B55F5B /* FoodzUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodzUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07C636481E96587F00B55F5B /* FoodzUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodzUITests.swift; sourceTree = "<group>"; };
 		07C6364A1E96587F00B55F5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		07FBF05C1E9E37DC0075BF95 /* RecipeListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeListResponse.swift; sourceTree = "<group>"; };
+		07FBF0601E9E3E930075BF95 /* PlanListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlanListResponse.swift; sourceTree = "<group>"; };
+		07FBF0621E9E42DD0075BF95 /* LoginResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		5112E44B0C24B4BF092C2907 /* Pods-FoodzUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodzUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodzUITests/Pods-FoodzUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5AB847270D735C08C7042920 /* Pods-FoodzTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodzTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoodzTests/Pods-FoodzTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5D0A25782BA86D0A993BE6B7 /* Pods_Foodz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Foodz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +161,7 @@
 		07C636251E96587F00B55F5B /* Foodz */ = {
 			isa = PBXGroup;
 			children = (
+				07FBF05B1E9E378F0075BF95 /* Responses */,
 				07C636261E96587F00B55F5B /* AppDelegate.swift */,
 				07C636281E96587F00B55F5B /* RecipesViewController.swift */,
 				075C07D31E9BEBD900B8DF72 /* Models */,
@@ -193,6 +200,16 @@
 				07C6364A1E96587F00B55F5B /* Info.plist */,
 			);
 			path = FoodzUITests;
+			sourceTree = "<group>";
+		};
+		07FBF05B1E9E378F0075BF95 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				07FBF05C1E9E37DC0075BF95 /* RecipeListResponse.swift */,
+				07FBF0601E9E3E930075BF95 /* PlanListResponse.swift */,
+				07FBF0621E9E42DD0075BF95 /* LoginResponse.swift */,
+			);
+			name = Responses;
 			sourceTree = "<group>";
 		};
 		12AA0DAF0E82D15B1AAA01C1 /* Frameworks */ = {
@@ -515,9 +532,12 @@
 				075AF34F1E96B4AC006DC8A8 /* PlanTableViewCell.swift in Sources */,
 				075C07D51E9BEC2000B8DF72 /* Day.swift in Sources */,
 				0756CB331E97DB5300A532FF /* DateUtil.swift in Sources */,
+				07FBF0611E9E3E930075BF95 /* PlanListResponse.swift in Sources */,
+				07FBF0631E9E42DD0075BF95 /* LoginResponse.swift in Sources */,
 				075AF3511E97AA80006DC8A8 /* PlanDetailViewController.swift in Sources */,
 				074C5F171E965E4A00A3D372 /* RecipeTableViewCell.swift in Sources */,
 				075C07D01E9BEB5C00B8DF72 /* Plan.swift in Sources */,
+				07FBF05D1E9E37DC0075BF95 /* RecipeListResponse.swift in Sources */,
 				075C07D21E9BEB8A00B8DF72 /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

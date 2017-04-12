@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 
 class RecipeDetailViewController: UIViewController {
 
@@ -49,21 +47,29 @@ class RecipeDetailViewController: UIViewController {
         }
                 
         if !editMode {
-            let params = recipe?.toParameters()
-            ApiService.sharedInstance.addRecipe(parameters: params!) { (json, error) in
-                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: nil, action: nil)
-                let newRecipe = Recipe(json: json!)
-                self.recipe = newRecipe
-                self.performSegue(withIdentifier: "SaveRecipeDetail", sender: self)
+            let params = recipe?.toJSON()
+            ApiService.sharedInstance.addRecipe(parameters: params!) { (recipe, error) in
+                if let newRecipe = recipe {
+                    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .done, target: nil, action: nil)
+                    self.recipe = newRecipe
+                    self.performSegue(withIdentifier: "SaveRecipeDetail", sender: self)
+                } else {
+                    // Todo: Alert here
+                    print("[RecipeDetailViewController] Error while unwrapping recipe from ApiService")
+                }
             }
             
         } else {
-            let params = recipe?.toParameters()
-            ApiService.sharedInstance.editRecipe(withId: recipe!.id!, andParameters: params!) { (json, error) in
-                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: nil, action: nil)
-                let updatedRecipe = Recipe(json: json!)
-                self.recipe = updatedRecipe
-                self.performSegue(withIdentifier: "SaveRecipeDetail", sender: self)
+            let params = recipe?.toJSON()
+            ApiService.sharedInstance.editRecipe(withId: recipe!.id!, andParameters: params!) { (recipe, error) in
+                if let updatedRecipe = recipe {
+                    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: nil, action: nil)
+                    self.recipe = updatedRecipe
+                    self.performSegue(withIdentifier: "SaveRecipeDetail", sender: self)
+                } else {
+                    // Todo: Alert here
+                    print("[RecipeDetailViewController] Error while unwrapping recipe from ApiService")
+                }
             }
         }
     }
@@ -75,18 +81,8 @@ class RecipeDetailViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SaveRecipeDetail" {
-
+            print("SaveRecipeDetail seque")
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
