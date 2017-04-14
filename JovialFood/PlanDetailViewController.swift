@@ -184,6 +184,13 @@ class PlanDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             self.recipePickerView.searchController.searchBar.text = "" // Reset query
+            if let currentRecipeId = self.plan!.meals![indexPath.row].recipeId {
+                let currentRecipe = self.recipes?.filter({ $0.id == currentRecipeId }).first
+                if let recipe = currentRecipe {
+                    self.recipePickerView.selectedRecipe = recipe
+                }
+            }
+            
             self.navigationController?.pushViewController(self.recipePickerView, animated: true)
         }
     }

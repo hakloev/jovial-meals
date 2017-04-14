@@ -98,8 +98,16 @@ class RecipePickerViewController: UITableViewController {
             recipe = recipes[indexPath.row]
         }
         
-        
         cell.textLabel?.text = recipe.name
+        
+        if let selectedRecipe = self.selectedRecipe {
+            if selectedRecipe.id == recipe.id {
+                cell.accessoryType = .checkmark
+            } else {
+                cell.accessoryType = .none
+            }
+        }
+        
         return cell
     }
     
