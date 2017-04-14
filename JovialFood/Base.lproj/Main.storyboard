@@ -198,9 +198,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="cYg-GP-lQX" kind="show" identifier="PickRecipe" id="hOC-av-Gng"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -233,7 +230,7 @@
         <!--Recipe Picker View Controller-->
         <scene sceneID="RqP-7G-SXM">
             <objects>
-                <tableViewController id="cYg-GP-lQX" customClass="RecipePickerViewController" customModule="JovialFood" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="RecipePickerView" id="cYg-GP-lQX" customClass="RecipePickerViewController" customModule="JovialFood" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="0og-c0-ngS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -269,7 +266,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FRX-QQ-5d9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="gfk-4C-Mim" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5055" y="212"/>
+            <point key="canvasLocation" x="5092" y="212"/>
         </scene>
         <!--Plans-->
         <scene sceneID="wg7-f3-ORb">
