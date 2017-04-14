@@ -48,8 +48,31 @@ class PlansViewController: UIViewController {
                 if let vc = rootVC.viewControllers[0] as? PlanDetailViewController {
                     let plan = self.plans[self.tableView.indexPathForSelectedRow!.row]
                     vc.editMode = true
-                    vc.plan = plan
+                    vc.planId = plan.id!
                 }
+            }
+        }
+    }
+    
+    @IBAction func saveToPlansDetailViewController(segue: UIStoryboardSegue) {
+        print("Save PlanDetail")
+        if let planDetailViewController = segue.source as? PlanDetailViewController {
+            if let newPlan = planDetailViewController.plan {
+                let alreadyExists = self.plans.contains(where: { $0.id! == newPlan.id })
+                
+                if !alreadyExists {
+                    self.plans.insert(newPlan, at: 0)
+                } else {
+                    let index = self.plans.index(where: { $0.id! == newPlan.id })
+                    if let index = index {
+                        self.plans[index] = newPlan
+                    }
+                }
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+                
             }
         }
     }
@@ -59,7 +82,7 @@ class PlansViewController: UIViewController {
         if let selectedIndex = self.tableView.indexPathForSelectedRow {
             if let vc = segue.source as? PlanDetailViewController {
                 // TODO: May remove this, and only do it on succeded save
-                self.plans[selectedIndex.row] = vc.plan!
+                //self.plans[selectedIndex.row] = vc.plan!
             }
         }
     }

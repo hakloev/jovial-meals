@@ -35,13 +35,13 @@ class ApiService {
         return ["Authorization": "JWT \(jwtToken)"]
     }
     
-    func getMostRecentPlan(completion: @escaping (Plan?, Error?) -> Void) {
+    func getMostRecentPlan(completion: @escaping (PlanDetailResponse?, Error?) -> Void) {
         // TODO: Need error handling for getTokenHeaders()
 
-        Alamofire.request(LATEST_URL, headers: getTokenHeaders()).responseObject { (response: DataResponse<Plan>) in
+        Alamofire.request(LATEST_URL, headers: getTokenHeaders()).responseObject { (response: DataResponse<PlanDetailResponse>) in
             switch response.result {
-            case .success(let plan):
-                completion(plan, nil)
+            case .success(let planDetail):
+                completion(planDetail, nil)
             case .failure(let error):
                 print("Error: \(error.localizedDescription)")
                 completion(nil, error)
@@ -49,6 +49,31 @@ class ApiService {
         }
     }
     
+    func getPlan(byId id: Int, completion: @escaping (PlanDetailResponse?, Error?) -> Void) {
+        Alamofire.request("\(PLAN_URL)\(id)/", headers: getTokenHeaders()).responseObject { (response: DataResponse<PlanDetailResponse>) in
+            switch response.result {
+            case .success(let planDetail):
+                completion(planDetail, nil)
+            case .failure(let error):
+                print("Error: \(error.localizedDescription)")
+                completion(nil, error)
+            }
+        }
+    }
+    
+    func editPlan(byId id: Int, andParameters parameters: [String:Any], completion: @escaping (Plan?, Error?) -> Void) {
+        Alamofire.request("\(PLAN_URL)\(id)/", method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: getTokenHeaders()).responseObject { (response: DataResponse<Plan>) in
+            switch response.result {
+            case .success(let plan):
+                completion(plan, nil)
+            case .failure(let error):
+                print("Error \(error.localizedDescription)")
+                completion(nil, error)
+            }
+        }
+    }
+
+   
     func getAllPlans(completion: @escaping ([Plan]?, Error?) -> Void) {
         Alamofire.request(PLAN_URL, headers: getTokenHeaders()).responseObject { (response: DataResponse<PlanListResponse>) in
             switch response.result {
@@ -63,19 +88,17 @@ class ApiService {
         }
     }
     
-//    func getMealsForPlanById(id: Int, completion: @escaping GeneralApiResponse) {
-//        Alamofire.request("\(MEAL_URL)\(id)/", headers: getTokenHeaders()).responseJSON { response in
-//            switch response.result {
-//            case .success(let value):
-//                let json = JSON(value)
-//                print(value)
-//                completion(json, nil)
-//            case .failure(let error):
-//                print("Error: \(error.localizedDescription)")
-//                completion(nil, error)
-//            }
-//        }
-//    }
+    func getMealsForPlanById(id: Int, completion: @escaping ([Meal]?, Error?) -> Void) {
+        Alamofire.request("\(PLAN_URL)\(id)/", headers: getTokenHeaders()).responseArray { (response:DataResponse<[Meal]>) in
+            switch response.result {
+            case .success(let meals):
+                completion(meals, nil)
+            case .failure(let error):
+                print("Error: \(error.localizedDescription)")
+                completion(nil, error)
+            }
+        }
+    }
     
     func getAllRecipes(completion: @escaping ([Recipe]?, Error?) -> Void) {
         Alamofire.request(RECIPE_URL, headers: getTokenHeaders()).responseObject { (response: DataResponse<RecipeListResponse>) in
@@ -91,7 +114,20 @@ class ApiService {
         }
     }
     
-    func addRecipe(parameters: [String:Any], completion: @escaping (Recipe?, Error?) -> Void) {
+    func addPlan(parameters: [String: Any], completion: @escaping (Plan?, Error?) -> Void) {
+        Alamofire.request(PLAN_URL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: getTokenHeaders()).responseObject { (response: DataResponse<Plan>) in
+            switch response.result {
+            case .success(let plan):
+                completion(plan, nil)
+            case .failure(let error):
+                print("Error \(error.localizedDescription)")
+                completion(nil, error)
+            }
+        
+        }
+    }
+    
+    func addRecipe(parameters: [String: Any], completion: @escaping (Recipe?, Error?) -> Void) {
         Alamofire.request(RECIPE_URL, method: .post, parameters: parameters, headers: getTokenHeaders()).responseObject { (response: DataResponse<Recipe>) in
             switch response.result {
             case .success(let recipe):

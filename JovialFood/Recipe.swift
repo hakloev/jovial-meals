@@ -35,4 +35,6 @@ struct Recipe: Mappable {
         website <- map["website"]
         recipeType <- map["recipe_type"]
     }
+    
+    
 }

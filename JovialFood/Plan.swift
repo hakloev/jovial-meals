@@ -26,7 +26,6 @@ struct Plan: Mappable {
 //                meals!.append(tempMeal)
 //            }
 //        }
-//        
 //    }
     
     init?(map: Map) {}

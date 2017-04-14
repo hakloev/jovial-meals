@@ -6,7 +6,6 @@
 //  Copyright © 2017 Håkon Ødegård Løvdal. All rights reserved.
 //
 
-
 import ObjectMapper
 
 struct PlanListResponse: Mappable {

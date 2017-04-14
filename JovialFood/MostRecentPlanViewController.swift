@@ -38,7 +38,7 @@ class MostRecentPlanViewController: UIViewController {
     func loadMostRecentPlan() {
         ApiService.sharedInstance.getMostRecentPlan { (plan, error) in
             if let fetchedPlan = plan {
-                self.plan = fetchedPlan
+                self.plan = fetchedPlan.plan
             } else {
                 print("[MostRecentPlanViewController] Error while unwrapping response from ApiService")
             }

@@ -12,7 +12,7 @@ struct Meal: Mappable {
     var id: Int?
     var day: Int?
     var eaten: Bool?
-    var recipe: Recipe?
+    var recipeId: Int?
     
 //    init(json: JSON) {
 //        id = json["id"].int
@@ -31,13 +31,13 @@ struct Meal: Mappable {
         id = nil
         self.day = day
         eaten = false
-        recipe = nil        
+        recipeId = nil
     }
     
     mutating func mapping(map: Map) {
         id <- map["id"]
         day <- map["day"]
         eaten <- map["eaten"]
-        recipe <- map["recipe"]
+        recipeId <- map["recipe_id"]
     }
 }

@@ -13,7 +13,7 @@
         <!--Recipes-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="9pv-A4-QxB" customClass="RecipesViewController" customModule="Foodz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="9pv-A4-QxB" customClass="RecipesViewController" customModule="JovialFood" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipeCell" id="I1y-kZ-llI" customClass="RecipeTableViewCell" customModule="Foodz" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipeCell" id="I1y-kZ-llI" customClass="RecipeTableViewCell" customModule="JovialFood" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I1y-kZ-llI" id="piq-OR-72m">
@@ -93,7 +93,7 @@
         <!--Add Recipe-->
         <scene sceneID="86e-5V-QcN">
             <objects>
-                <viewController id="op9-Dj-mTE" customClass="RecipeDetailViewController" customModule="Foodz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="op9-Dj-mTE" customClass="RecipeDetailViewController" customModule="JovialFood" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5rp-k9-d7m"/>
                         <viewControllerLayoutGuide type="bottom" id="1tA-IM-lBD"/>
@@ -152,7 +152,7 @@
         <!--Plan-->
         <scene sceneID="jds-J7-sKR">
             <objects>
-                <tableViewController id="ymA-Vz-yl9" customClass="PlanDetailViewController" customModule="Foodz" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="ymA-Vz-yl9" customClass="PlanDetailViewController" customModule="JovialFood" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="Eb7-Rl-yZr">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -217,10 +217,13 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="CO0-jw-vIi">
                             <connections>
-                                <action selector="savePlan:" destination="ymA-Vz-yl9" id="fNJ-e1-36c"/>
+                                <action selector="savePlan:" destination="ymA-Vz-yl9" id="ZZT-tv-czy"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="GNg-Dd-CTJ" kind="unwind" identifier="SavePlanDetail" unwindAction="saveToPlansDetailViewControllerWithSegue:" id="00G-uW-m0H"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xnK-2f-pNQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="GNg-Dd-CTJ" userLabel="Exit" sceneMemberID="exit"/>
@@ -230,7 +233,7 @@
         <!--Recipe Picker View Controller-->
         <scene sceneID="RqP-7G-SXM">
             <objects>
-                <tableViewController id="cYg-GP-lQX" customClass="RecipePickerViewController" customModule="Foodz" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="cYg-GP-lQX" customClass="RecipePickerViewController" customModule="JovialFood" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="0og-c0-ngS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -271,7 +274,7 @@
         <!--Plans-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="8rJ-Kc-sve" customClass="PlansViewController" customModule="Foodz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="8rJ-Kc-sve" customClass="PlansViewController" customModule="JovialFood" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -284,7 +287,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="planCell" id="a9k-ES-oz7" customClass="PlanTableViewCell" customModule="Foodz" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="planCell" id="a9k-ES-oz7" customClass="PlanTableViewCell" customModule="JovialFood" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a9k-ES-oz7" id="TC8-tA-mqW">
@@ -351,7 +354,7 @@
         <!--Login View Controller-->
         <scene sceneID="Ax1-TK-zdg">
             <objects>
-                <viewController id="n5K-Ly-sc0" customClass="LoginViewController" customModule="Foodz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="n5K-Ly-sc0" customClass="LoginViewController" customModule="JovialFood" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZBj-3m-RrX"/>
                         <viewControllerLayoutGuide type="bottom" id="Bet-yz-rzn"/>
@@ -438,7 +441,7 @@
         <!--Most Recent Plan View Controller-->
         <scene sceneID="O5n-ao-kex">
             <objects>
-                <viewController id="QRQ-ub-Tml" customClass="MostRecentPlanViewController" customModule="Foodz" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="QRQ-ub-Tml" customClass="MostRecentPlanViewController" customModule="JovialFood" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WaS-nt-Vs2"/>
                         <viewControllerLayoutGuide type="bottom" id="iQs-1H-OAL"/>
@@ -548,6 +551,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="eWz-u6-3ZW"/>
-        <segue reference="0mD-kq-2Lj"/>
+        <segue reference="igG-D8-JKu"/>
     </inferredMetricsTieBreakers>
 </document>
