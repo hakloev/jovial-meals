@@ -16,6 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+//        UserDefaults.standard.set(false, forKey: LoginConstants.USER_LOGGED_IN_KEY)
+//        UserDefaults.standard.synchronize()
+        
         if UserDefaults.standard.bool(forKey: LoginConstants.USER_LOGGED_IN_KEY) {
             // User is logged in, get tab bar controller from Main.storyboard instead of LoginVC
             print("User already logged in, continue to Main VC")
