@@ -418,7 +418,7 @@
                         <outlet property="loginButton" destination="FUS-1y-ztH" id="EqJ-iL-qpu"/>
                         <outlet property="passwordInput" destination="JNI-yt-uui" id="4qc-zq-IcC"/>
                         <outlet property="usernameInput" destination="Wnw-Wy-Ao1" id="TUM-nP-Es9"/>
-                        <segue destination="49e-Tb-3d3" kind="show" identifier="LoginSucceded" id="gK2-Q8-nYj"/>
+                        <segue destination="49e-Tb-3d3" kind="showDetail" identifier="LoginSucceded" action="showViewController:sender:" id="gK2-Q8-nYj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1np-aN-QdD" userLabel="First Responder" sceneMemberID="firstResponder"/>
