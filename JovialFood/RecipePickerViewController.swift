@@ -11,10 +11,19 @@ import UIKit
 class RecipePickerViewController: UITableViewController {
 
     var recipes: [Recipe] = []
+    var filteredRecipes: [Recipe] = []
+    
     var selectedRecipe: Recipe?
+    
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+//        definesPresentationContext = false
+        self.tableView.tableHeaderView = searchController.searchBar
         
         ApiService.sharedInstance.getAllRecipes { (recipes, error) in
             if let fetchedRecipes = recipes {
@@ -45,9 +54,23 @@ class RecipePickerViewController: UITableViewController {
             if let cell = sender as? UITableViewCell {
                 let indexPath = tableView.indexPath(for: cell)
                 if let index = indexPath?.row {
-                    selectedRecipe = recipes[index]
+                    if searchController.isActive && searchController.searchBar.text != "" {
+                        selectedRecipe = filteredRecipes[index]
+                    } else {
+                        selectedRecipe = recipes[index]
+                    }
                 }
             }
+        }
+    }
+    
+    func filterContentForSearchText(query: String) {
+        filteredRecipes = recipes.filter { recipe in
+            return recipe.name!.lowercased().contains(query.lowercased())
+        }
+
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
     }
 
@@ -60,12 +83,32 @@ class RecipePickerViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        if searchController.isActive && searchController.searchBar.text != "" {
+            return filteredRecipes.count
+        }
         return recipes.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "recipePickerCell", for: indexPath)
-        cell.textLabel?.text = self.recipes[indexPath.row].name
+        let recipe: Recipe
+        if searchController.isActive && searchController.searchBar.text != "" {
+            recipe = filteredRecipes[indexPath.row]
+        } else {
+            recipe = recipes[indexPath.row]
+        }
+        
+        
+        cell.textLabel?.text = recipe.name
         return cell
     }
+    
+}
+
+extension RecipePickerViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(query: searchController.searchBar.text!)
+    }
+    
 }

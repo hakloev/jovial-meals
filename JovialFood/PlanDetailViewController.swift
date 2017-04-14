@@ -183,6 +183,7 @@ class PlanDetailViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
+            self.recipePickerView.searchController.searchBar.text = "" // Reset query
             self.navigationController?.pushViewController(self.recipePickerView, animated: true)
         }
     }
