@@ -355,16 +355,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dAY-CF-iCg">
-                                                    <rect key="frame" x="5" y="5" width="370" height="33.5"/>
+                                                    <rect key="frame" x="15" y="5" width="360" height="33.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qyd-Hc-ULM">
-                                                            <rect key="frame" x="0.0" y="0.0" width="370" height="10.5"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="360" height="10.5"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqc-Rb-oTO">
-                                                            <rect key="frame" x="0.0" y="15.5" width="370" height="18"/>
+                                                            <rect key="frame" x="0.0" y="15.5" width="360" height="18"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" red="1" green="0.70638510269999999" blue="0.02279620903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -375,7 +375,7 @@
                                             <constraints>
                                                 <constraint firstItem="dAY-CF-iCg" firstAttribute="top" secondItem="TC8-tA-mqW" secondAttribute="top" constant="5" id="Stv-CK-6z2"/>
                                                 <constraint firstAttribute="bottom" secondItem="dAY-CF-iCg" secondAttribute="bottom" constant="5" id="dcV-23-z7z"/>
-                                                <constraint firstItem="dAY-CF-iCg" firstAttribute="leading" secondItem="TC8-tA-mqW" secondAttribute="leading" constant="5" id="eXc-9t-WTF"/>
+                                                <constraint firstItem="dAY-CF-iCg" firstAttribute="leading" secondItem="TC8-tA-mqW" secondAttribute="leading" constant="15" id="eXc-9t-WTF"/>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" secondItem="dAY-CF-iCg" secondAttribute="height" id="ruT-k9-TI9"/>
                                                 <constraint firstAttribute="trailing" secondItem="dAY-CF-iCg" secondAttribute="trailing" id="zm5-gU-IsD"/>
                                             </constraints>
