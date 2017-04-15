@@ -114,7 +114,7 @@ extension PlansViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.weekLabel.text = "Week \(startDate!.getWeekNumber())"
         cell.datesLabel.text = "\(startDateString) - \(endDateString)"
-        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
         return cell
     }
 }

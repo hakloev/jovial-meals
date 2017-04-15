@@ -63,7 +63,7 @@
                                         <connections>
                                             <outlet property="titleLabel" destination="cIk-Qi-C65" id="02Q-HX-z4P"/>
                                             <outlet property="typeLabel" destination="qdE-Qz-q9r" id="ZLg-c9-KjB"/>
-                                            <segue destination="Bf8-HG-Q04" kind="presentation" identifier="EditRecipe" id="igG-D8-JKu"/>
+                                            <segue destination="Bf8-HG-Q04" kind="show" identifier="EditRecipe" id="igG-D8-JKu"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -80,7 +80,7 @@
                     <navigationItem key="navigationItem" title="Recipes" id="mWd-m8-reU">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="aLg-IQ-ai6">
                             <connections>
-                                <segue destination="Bf8-HG-Q04" kind="presentation" id="0mD-kq-2Lj"/>
+                                <segue destination="Bf8-HG-Q04" kind="showDetail" action="showViewController:sender:" id="0mD-kq-2Lj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -282,9 +282,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8ql-6I-Jek">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8ql-6I-Jek">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="planCell" id="a9k-ES-oz7" customClass="PlanTableViewCell" customModule="JovialFood" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -298,23 +300,24 @@
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qyd-Hc-ULM">
                                                             <rect key="frame" x="0.0" y="0.0" width="370" height="10.5"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqc-Rb-oTO">
                                                             <rect key="frame" x="0.0" y="15.5" width="370" height="18"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" red="1" green="0.70638510269999999" blue="0.02279620903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="dAY-CF-iCg" firstAttribute="top" secondItem="TC8-tA-mqW" secondAttribute="top" constant="5" id="Stv-CK-6z2"/>
                                                 <constraint firstAttribute="bottom" secondItem="dAY-CF-iCg" secondAttribute="bottom" constant="5" id="dcV-23-z7z"/>
                                                 <constraint firstItem="dAY-CF-iCg" firstAttribute="leading" secondItem="TC8-tA-mqW" secondAttribute="leading" constant="5" id="eXc-9t-WTF"/>
-                                                <constraint firstItem="dAY-CF-iCg" firstAttribute="top" secondItem="TC8-tA-mqW" secondAttribute="top" constant="5" id="voP-fQ-W8Z"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" secondItem="dAY-CF-iCg" secondAttribute="height" id="ruT-k9-TI9"/>
                                                 <constraint firstAttribute="trailing" secondItem="dAY-CF-iCg" secondAttribute="trailing" id="zm5-gU-IsD"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -436,6 +439,8 @@
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="QRQ-ub-Tml" kind="relationship" relationship="viewControllers" id="XMH-AQ-cBC"/>
@@ -447,7 +452,7 @@
             </objects>
             <point key="canvasLocation" x="-657" y="-371"/>
         </scene>
-        <!--Most Recent Plan View Controller-->
+        <!--Latest-->
         <scene sceneID="O5n-ao-kex">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="QRQ-ub-Tml" customClass="MostRecentPlanViewController" customModule="JovialFood" customModuleProvider="target" sceneMemberID="viewController">
@@ -592,7 +597,7 @@
                             <constraint firstAttribute="trailing" secondItem="3Yd-Kt-ktE" secondAttribute="trailing" id="bcR-Z4-dZy"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="mostRecent" id="ted-sg-vV1"/>
+                    <tabBarItem key="tabBarItem" title="Latest" image="today" id="ted-sg-vV1"/>
                     <connections>
                         <outlet property="collectionView" destination="rLq-cq-IdU" id="kIo-Th-ZIZ"/>
                         <outlet property="currentMealLabel" destination="UZf-jf-wtO" id="uOe-wY-Ccb"/>
@@ -603,11 +608,11 @@
             </objects>
             <point key="canvasLocation" x="1261.5999999999999" y="-1321.8890554722639"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Recipes-->
         <scene sceneID="4pM-aW-OMJ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QVX-Lt-Im3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" systemItem="favorites" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Recipes" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LWa-g1-zj8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -625,6 +630,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Qao-Bc-MvE">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JDY-WK-iEP" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Bf8-HG-Q04" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rmc-gS-c1D">
@@ -636,15 +642,14 @@
                         <segue destination="op9-Dj-mTE" kind="relationship" relationship="rootViewController" id="AAZ-EW-gJh"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JDY-WK-iEP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3153" y="-555"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Plans-->
         <scene sceneID="RHd-Wq-gGi">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WGg-Im-wKS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Plans" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="q93-7S-0pE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -678,6 +683,9 @@
             <point key="canvasLocation" x="3153" y="212"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="today" width="25" height="25"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="eWz-u6-3ZW"/>
         <segue reference="igG-D8-JKu"/>
