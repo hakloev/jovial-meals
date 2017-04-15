@@ -155,14 +155,14 @@ class PlanDetailViewController: UITableViewController {
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "mealCell", for: indexPath)
             if let meal = plan?.meals?[indexPath.row] {
-                cell.textLabel?.text = Day(rawValue: meal.day!)!.stringLabel
+                cell.detailTextLabel?.text = Day(rawValue: meal.day!)!.stringLabel
                 if let recipeId = meal.recipeId {
                     let currentRecipe = self.recipes?.filter({ $0.id == recipeId }).first
                     if let recipe = currentRecipe {
-                        cell.detailTextLabel?.text = recipe.name
+                        cell.textLabel?.text = recipe.name
                     }
                 } else {
-                    cell.detailTextLabel?.text = "Not Selected"
+                    cell.textLabel?.text = "Not Selected"
                 }
             }
         default:
@@ -189,6 +189,8 @@ class PlanDetailViewController: UITableViewController {
                 if let recipe = currentRecipe {
                     self.recipePickerView.selectedRecipe = recipe
                 }
+            } else {
+                self.recipePickerView.selectedRecipe = nil
             }
             
             self.navigationController?.pushViewController(self.recipePickerView, animated: true)

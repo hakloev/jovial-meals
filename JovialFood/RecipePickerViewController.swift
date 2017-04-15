@@ -22,7 +22,6 @@ class RecipePickerViewController: UITableViewController {
         
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
-//        definesPresentationContext = false
         self.tableView.tableHeaderView = searchController.searchBar
         
         ApiService.sharedInstance.getAllRecipes { (recipes, error) in
@@ -106,6 +105,8 @@ class RecipePickerViewController: UITableViewController {
             } else {
                 cell.accessoryType = .none
             }
+        } else {
+            cell.accessoryType = .none
         }
         
         return cell
