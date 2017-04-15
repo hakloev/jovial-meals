@@ -21,8 +21,8 @@ class RecipesViewController: UIViewController {
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.estimatedRowHeight = 50
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 100
         
         ApiService.sharedInstance.getAllRecipes { (recipes, error) in
             if let fetchedRecipes = recipes {
@@ -98,7 +98,7 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
         let recipe = self.recipes[indexPath.row]
         cell.titleLabel.text = recipe.name
         cell.typeLabel.text = recipe.recipeType
-        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
         return cell
     }
     
