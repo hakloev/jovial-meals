@@ -28,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.makeKeyAndVisible()
         }
         
+        print("Launching with BASE_URL as \(BASE_URL)")
+        
         return true
     }
 

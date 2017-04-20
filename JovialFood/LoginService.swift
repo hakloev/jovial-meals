@@ -24,7 +24,8 @@ class LoginService {
     
     public static let sharedInstance = LoginService()
     
-    private let BASE_URL = "http://10.0.0.62:8000/api/v1/token-auth/"
+    // BASE_URL from ApiService in order to get the correct endpoint
+    private let AUTH_URL = "\(BASE_URL)api/v1/token-auth/"
     
     weak var delegate: LoginServiceDelegate?
     
@@ -34,7 +35,7 @@ class LoginService {
             "password": password,
         ]
         
-        Alamofire.request(BASE_URL, method: .post, parameters: parameters, headers: nil).responseObject { (response: DataResponse<LoginResponse>) in
+        Alamofire.request(AUTH_URL, method: .post, parameters: parameters, headers: nil).responseObject { (response: DataResponse<LoginResponse>) in
             switch response.result {
             case .success(let response):
                 if let jwtKey = response.token {

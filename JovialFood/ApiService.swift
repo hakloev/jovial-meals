@@ -10,17 +10,23 @@ import Foundation
 import Alamofire
 import AlamofireObjectMapper
 
-let BASE_URL = "http://10.0.0.62:8000/api/v1/food/"
-public let RECIPE_URL = "\(BASE_URL)recipes/"
-public let PLAN_URL = "\(BASE_URL)plans/"
-public let LATEST_URL = "\(PLAN_URL)latest/"
-public let MEAL_URL = "\(BASE_URL)meals/"
+#if DEVELOPMENT
+let BASE_URL = "http://10.0.0.62:8000/"
+#else
+let BASE_URL = "https://hakloev.no/"
+#endif
+
+public let API_URL = "\(BASE_URL)api/v1/food/"
+public let RECIPE_URL = "\(API_URL)recipes/"
+public let PLAN_URL = "\(API_URL)plans/"
+public let LATEST_URL = "\(API_URL)latest/"
+public let MEAL_URL = "\(API_URL)meals/"
 
 
 class ApiService {
     
     static let sharedInstance = ApiService()
-    
+  
     // TODO: Maybe completion here passed from general api func? To return error?
     // example: let error = NSError(domain: "fitmi-invalid-jwt-token", code: 2, userInfo: nil) as Error
     
